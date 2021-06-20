@@ -1,0 +1,23 @@
+---
+- name: Install Docker and Pull the Github Repo
+  hosts: Appserver
+  become: true
+  
+  tasks:
+    - name: Install docker
+      yum:
+        name:
+          - docker
+        state: present
+        update_cache: yes
+ 
+    - name: Enable and Start Docker service
+      service:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Clone Repository 
+      git:
+        repo: https://github.com/arksinha93/ansible-tower-playbooks.git
+        dest: /home/arksinha/ansible-tower-playbooks
