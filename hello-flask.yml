@@ -1,0 +1,52 @@
+---
+- name: Hello Flask
+  hosts: Appserver
+  become: true
+  
+  tasks:
+    - name: Install docker
+      yum:
+        name:
+          - docker
+        state: present
+        update_cache: yes
+ 
+    - name: Enable and Start Docker service
+      service:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Clone Repository 
+      git:
+        repo: https://github.com/arksinha93/python-flask-demo.git
+        dest: /home/arksinha/python-flask-demo 
+
+    - name: Change Directory
+      command: ls
+        chdir: /home/arksinha/python-flask-demo 
+    
+    - name: Install pip
+      yum: 
+        name: python-pip 
+        state: present
+
+    - name: install docker-py
+      pip: 
+        name: docker-py
+
+    - name: Build Docker Image
+      docker_image:
+        name: my-flask-app
+        path: /home/arksinha
+        state: build
+
+    - name: Run Docker Container
+      docker_container:
+        name: my-flask-app
+        path: /home/arksinha
+        state: running
+        exposed_ports: 5000
+        ports: 
+          - "127.0.0.1:5000:5000"
+        
