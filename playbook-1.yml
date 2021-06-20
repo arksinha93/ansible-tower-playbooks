@@ -5,7 +5,7 @@
   
   tasks:
     - name: Install docker
-      yum:
+      apt:
         name:
           - docker
         state: present
