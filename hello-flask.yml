@@ -19,6 +19,5 @@
 
     - name: Clone Repository 
       git:
-        repo: https://github.com/arksinha93/python-flask-demo.git
-        dest: /home/arksinha/python-flask-demo 
-        
+        repo: https://github.com/arksinha93/ansible-tower-playbooks.git
+        dest: /home/arksinha/ansible-tower-playbooks
