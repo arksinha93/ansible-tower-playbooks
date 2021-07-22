@@ -1,6 +1,6 @@
 ---
 - name: Install Docker and Pull the Github Repo
-  hosts: localhost
+  hosts: Webserver
   become: true
   
   tasks:
