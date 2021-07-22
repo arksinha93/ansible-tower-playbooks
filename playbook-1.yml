@@ -1,5 +1,5 @@
 ---
-- name: Install Dockeron host
+- name: Install Docker on host
   hosts: Webserver
   become: true
   
