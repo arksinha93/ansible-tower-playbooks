@@ -1,13 +1,12 @@
 ---
-- name: Install Docker and Pull the Github Repo
+- name: Install Dockeron host
   hosts: Webserver
   become: true
   
   tasks:
     - name: Install docker
-      apt:
-        name:
-          - docker
+      yum:
+        name: docker
         state: present
         update_cache: yes
  
@@ -16,8 +15,3 @@
         name: docker
         enabled: yes
         state: started
-
-    - name: Clone Repository 
-      git:
-        repo: https://github.com/arksinha93/ansible-tower-playbooks.git
-        dest: /home/arksinha/ansible-tower-playbooks
